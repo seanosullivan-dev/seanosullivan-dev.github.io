@@ -31,7 +31,9 @@
     font-variation-settings:'wdth' 100;
     line-height:1.6;
     font-size:17px;
+    border-top:4px solid var(--green);
   }
+  ::selection{background:var(--green);color:#fff}
   a{color:var(--green);text-decoration-thickness:1px;text-underline-offset:3px}
   a:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:2px}
   .wrap{max-width:720px;margin:0 auto;padding:0 24px}
@@ -77,6 +79,34 @@
     padding-left:14px;
   }
   .call-how strong{color:var(--ink)}
+
+  /* highlight sweep on key phrase */
+  .hl{
+    background:linear-gradient(180deg, transparent 62%, var(--green-soft) 62%);
+    box-shadow:inset 0 -2px 0 var(--green);
+    padding:0 2px;
+  }
+
+  /* hero metrics strip */
+  .metrics{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+    gap:20px 28px;
+    margin-top:44px;
+    padding-top:24px;
+    border-top:1px solid var(--line);
+  }
+  .metrics b{
+    display:block;font-size:1.55rem;font-weight:800;
+    font-variation-settings:'wdth' 118;color:var(--green);line-height:1.1;
+  }
+  .metrics span{color:var(--muted);font-size:.85rem;display:block;margin-top:3px;max-width:15ch}
+
+  .btn{
+    display:inline-block;background:var(--green);color:#fff;text-decoration:none;
+    font-weight:700;padding:12px 22px;border-radius:8px;margin-bottom:22px;
+  }
+  .btn:hover{background:#0A6553}
 
   /* ---------- sections ---------- */
   section{padding:56px 0;border-bottom:1px solid var(--line)}
@@ -149,7 +179,7 @@
 
 <div class="hero">
   <div class="wrap">
-    <h1>I build AI voice agents and automation that real businesses run on. The fastest way to evaluate my work is to talk to it.</h1>
+    <h1>I build AI voice agents and automation that real businesses run on. The fastest way to evaluate my work is to <span class="hl">talk to it</span>.</h1>
 
     <div class="call-block">
       <div class="call-label"><span class="dot" aria-hidden="true"></span>Live demo — answers 24/7</div>
@@ -157,6 +187,14 @@
     </div>
 
     <p class="call-how"><strong>How to test it:</strong> pretend you're a patient calling <strong>Dental Dynasty</strong>, a fictional dental office. Try booking an appointment, asking about pricing, or calling after hours. It's a sandboxed demo of the production system — same AI, no real patient data behind it.</p>
+
+    <div class="metrics" aria-label="Key production numbers">
+      <div><b>250+</b><span>calls/week handled in production</span></div>
+      <div><b>245 → 0</b><span>missed calls for a dental client</span></div>
+      <div><b>&lt;2 min</b><span>lead response, down from 18</span></div>
+      <div><b>$7K/mo</b><span>billed automatically at Splash Bros</span></div>
+      <div><b>40 hrs</b><span>admin time saved monthly</span></div>
+    </div>
   </div>
 </div>
 
@@ -294,6 +332,7 @@
 <footer class="site" id="contact">
   <div class="wrap">
     <h2>Contact</h2>
+    <a class="btn" href="mailto:sean@seanosullivan.dev">Email me — sean@seanosullivan.dev</a>
     <ul class="contact">
       <li><span>Email</span><a href="mailto:sean@seanosullivan.dev">sean@seanosullivan.dev</a></li>
       <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/sean-o-sullivan-bb2076176/">linkedin.com/in/sean-o-sullivan-bb2076176</a></li>
