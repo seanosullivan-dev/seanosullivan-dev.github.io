@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sean O'Sullivan — AI &amp; Software Engineer</title>
+<meta name="description" content="Software engineer building production AI voice agents and business automation. Call the live demo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FAFAF7;
+    --ink:#1A2B33;
+    --muted:#5C6B70;
+    --line:#D9DFDB;
+    --green:#0E7C66;
+    --green-soft:#E4F0EB;
+    --panel:#F0F3F0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{animation:none!important;transition:none!important}
+  }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Archivo',system-ui,sans-serif;
+    font-variation-settings:'wdth' 100;
+    line-height:1.6;
+    font-size:17px;
+  }
+  a{color:var(--green);text-decoration-thickness:1px;text-underline-offset:3px}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:720px;margin:0 auto;padding:0 24px}
+
+  /* ---------- header ---------- */
+  header{padding:28px 0 0}
+  .topline{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+  .name{font-weight:700;font-size:1.05rem;letter-spacing:.01em}
+  nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-size:.92rem}
+  nav a:hover{color:var(--ink)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:72px 0 56px;border-bottom:1px solid var(--line)}
+  .hero h1{
+    font-size:clamp(1.5rem,3.5vw,2.1rem);
+    font-weight:600;
+    line-height:1.25;
+    max-width:24ch;
+    font-variation-settings:'wdth' 110;
+    margin-bottom:40px;
+  }
+  .call-block{margin-bottom:20px}
+  .call-label{display:flex;align-items:center;gap:10px;color:var(--green);font-weight:600;font-size:.95rem;margin-bottom:10px}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--green);position:relative}
+  .dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:2px solid var(--green);opacity:0;animation:ring 2.4s ease-out infinite}
+  @keyframes ring{0%{transform:scale(.5);opacity:.7}70%{transform:scale(1.15);opacity:0}100%{opacity:0}}
+  .call-number{
+    display:inline-block;
+    font-size:clamp(2.4rem,8.5vw,4.4rem);
+    font-weight:800;
+    font-variation-settings:'wdth' 120;
+    letter-spacing:.005em;
+    color:var(--ink);
+    text-decoration:none;
+    line-height:1.05;
+  }
+  .call-number:hover{color:var(--green)}
+  .call-how{
+    margin-top:18px;
+    max-width:56ch;
+    color:var(--muted);
+    border-left:3px solid var(--green);
+    padding-left:14px;
+  }
+  .call-how strong{color:var(--ink)}
+
+  /* ---------- sections ---------- */
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:1.35rem;font-weight:700;font-variation-settings:'wdth' 112;margin-bottom:8px}
+  .kicker{color:var(--muted);font-size:.95rem;margin-bottom:28px;max-width:60ch}
+
+  /* case file structure */
+  .case{margin-bottom:44px}
+  .case:last-child{margin-bottom:0}
+  .case h3{font-size:1.08rem;font-weight:700;margin-bottom:4px}
+  .case .sub{color:var(--muted);font-size:.92rem;margin-bottom:16px}
+  dl.file{border-top:1px solid var(--line)}
+  dl.file > div{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}
+  dt{color:var(--muted);font-size:.9rem;padding-top:2px}
+  dd{max-width:58ch}
+  .results{display:flex;gap:36px;flex-wrap:wrap;padding-top:4px}
+  .results b{display:block;font-size:1.65rem;font-weight:800;font-variation-settings:'wdth' 115;color:var(--green);line-height:1.1}
+  .results span{color:var(--muted);font-size:.88rem;max-width:16ch;display:block;margin-top:2px}
+
+  blockquote{
+    margin-top:16px;background:var(--green-soft);padding:14px 16px;border-radius:6px;
+    font-size:.95rem;
+  }
+  blockquote footer{color:var(--muted);font-size:.85rem;margin-top:6px}
+
+
+  /* pipeline */
+  .pipeline{margin-top:20px}
+  .pipeline figure{margin:0}
+  .pipeline figcaption{font-size:.9rem;color:var(--muted);margin-top:10px;max-width:58ch}
+  .scr{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px;background:#fff}
+  .phone-pair{display:grid;grid-template-columns:repeat(2,minmax(0,300px));gap:14px}
+  .scr-phone{max-width:320px}
+  .pipe-arrow{font-size:1.6rem;color:var(--green);padding:14px 0;font-weight:700}
+  .pipe-outputs{display:grid;gap:36px}
+  @media (max-width:520px){.phone-pair{grid-template-columns:1fr 1fr;gap:10px}}
+
+  /* stack list */
+  .stack p{max-width:62ch;margin-bottom:14px}
+  .stack .row{display:grid;grid-template-columns:150px 1fr;gap:16px;padding:10px 0;border-top:1px solid var(--line)}
+  .stack .row:last-child{border-bottom:1px solid var(--line)}
+  .stack .row span:first-child{color:var(--muted);font-size:.9rem}
+
+  /* ---------- footer ---------- */
+  footer.site{padding:56px 0 72px}
+  footer.site h2{margin-bottom:16px}
+  .contact{list-style:none}
+  .contact li{padding:8px 0;border-bottom:1px solid var(--line);display:flex;gap:16px;flex-wrap:wrap}
+  .contact li span{color:var(--muted);min-width:90px;font-size:.92rem}
+  .foot-note{margin-top:28px;color:var(--muted);font-size:.85rem;max-width:60ch}
+
+  @media (max-width:560px){
+    dl.file > div{grid-template-columns:1fr;gap:2px}
+    .stack .row{grid-template-columns:1fr;gap:2px}
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="topline">
+    <div class="name">Sean O'Sullivan</div>
+    <nav aria-label="Sections">
+      <a href="#work">Work</a>
+      <a href="#splashbros">Splash Bros</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <h1>I build AI voice agents and automation that real businesses run on. The fastest way to evaluate my work is to talk to it.</h1>
+
+    <div class="call-block">
+      <div class="call-label"><span class="dot" aria-hidden="true"></span>Live demo — answers 24/7</div>
+      <a class="call-number" href="tel:+17029838434">(702) 983-8434</a>
+    </div>
+
+    <p class="call-how"><strong>How to test it:</strong> pretend you're a patient calling <strong>Dental Dynasty</strong>, a fictional dental office. Try booking an appointment, asking about pricing, or calling after hours. It's a sandboxed demo of the production system — same AI, no real patient data behind it.</p>
+  </div>
+</div>
+
+<section id="work">
+  <div class="wrap">
+    <h2>Production work</h2>
+    <p class="kicker">Systems I co-built at CallAura, an AI receptionist platform live with paying business clients handling 250+ calls per week. Client names withheld; metrics are from production.</p>
+
+    <article class="case">
+      <h3>Dental practice — missed calls to zero</h3>
+      <p class="sub">AI receptionist deployment, 2025</p>
+      <dl class="file">
+        <div>
+          <dt>Problem</dt>
+          <dd>Front desk couldn't keep up with call volume. Call logs showed 245 missed calls over the three months before deployment — each one a patient who might not call back.</dd>
+        </div>
+        <div>
+          <dt>Deployed</dt>
+          <dd>An AI voice agent that answers every call: appointment requests, business-hours logic, live transfer to staff when a human is needed, and after-hours coverage.</dd>
+        </div>
+        <div>
+          <dt>Results</dt>
+          <dd>
+            <div class="results">
+              <div><b>245 → 0</b><span>missed calls after deployment</span></div>
+              <div><b>24/7</b><span>coverage, including after-hours</span></div>
+            </div>
+          </dd>
+        </div>
+      </dl>
+      <!-- Optional: client quote. Uncomment and fill in once you have permission.
+      <blockquote>
+        "Quote from the client goes here."
+        <footer>— Practice owner</footer>
+      </blockquote>
+      -->
+    </article>
+
+    <article class="case">
+      <h3>Aesthetics clinic — 18-minute lead response to under 2</h3>
+      <p class="sub">Automated lead engagement, 2025</p>
+      <dl class="file">
+        <div>
+          <dt>Problem</dt>
+          <dd>New leads waited an average of 18 minutes for a first response, and 31% of leads were never followed up with at all. In aesthetics, leads book with whoever answers first.</dd>
+        </div>
+        <div>
+          <dt>Deployed</dt>
+          <dd>Automated AI engagement workflows that respond to every inbound lead immediately, qualify them, and hand warm leads to staff with full context.</dd>
+        </div>
+        <div>
+          <dt>Results</dt>
+          <dd>
+            <div class="results">
+              <div><b>&lt;2 min</b><span>lead response, down from 18</span></div>
+              <div><b>31% → 4%</b><span>missed lead follow-ups</span></div>
+            </div>
+          </dd>
+        </div>
+      </dl>
+    </article>
+
+    <article class="case">
+      <h3>How it's built</h3>
+      <p class="sub">High level only — the interesting parts are in the details, and those stay ours.</p>
+      <div class="stack">
+        <p>Each deployment is a multi-branch voice agent wired into the client's actual operations: quoting, scheduling, transfers, and in-call SMS (including a photo-based quoting flow that prices jobs from customer photos with a vision model). Failure paths are designed, not discovered.</p>
+        <div class="row"><span>Voice &amp; LLM</span><span>Retell AI + Claude</span></div>
+        <div class="row"><span>Orchestration</span><span>n8n workflow automation, webhooks, REST integrations</span></div>
+        <div class="row"><span>Business systems</span><span>CRM, scheduling, messaging, Stripe payments</span></div>
+        <div class="row"><span>My role</span><span>Co-founder &amp; engineer — architecture, integrations, prompt design, testing, live production support</span></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="splashbros">
+  <div class="wrap">
+    <h2>Splash Bros — internal field-service platform</h2>
+    <p class="kicker">Sole engineer for my brother's pool service company in Las Vegas. Built the customer site and the internal platform the business runs on: 50–60 recurring accounts serviced weekly, in production since 2024.</p>
+
+    <dl class="file">
+      <div>
+        <dt>Problem</dt>
+        <dd>Every service visit generated paperwork: chemical logs, photos, billing, customer notifications. It ate roughly 40 administrative hours a month.</dd>
+      </div>
+      <div>
+        <dt>Built</dt>
+        <dd>A mobile workflow technicians complete on-site — chemical tracking, service documentation with photos, billing, and customer notifications fire automatically. Stripe billing handles ~$7K/month in payments.</dd>
+      </div>
+      <div>
+        <dt>Results</dt>
+        <dd>
+          <div class="results">
+            <div><b>~40 hrs</b><span>admin time saved per month</span></div>
+            <div><b>11 min</b><span>saved per service visit</span></div>
+            <div><b>2 yrs</b><span>in production, still running</span></div>
+          </div>
+        </dd>
+      </div>
+    </dl>
+
+    <p style="margin-top:20px;max-width:62ch;color:var(--muted)">This was a v1 built solo, with no budget, for exactly one customer: the business itself. It isn't pretty — it's adopted, which is harder.</p>
+
+    <h3 style="margin-top:36px;font-size:1.08rem">One tap runs the back office</h3>
+    <p style="max-width:62ch;color:var(--muted);margin-top:4px">The technician fills out one form poolside and hits Submit. Everything below happens automatically — no office work, ever.</p>
+
+    <div class="pipeline">
+      <figure class="pipe-step">
+        <div class="phone-pair">
+          <img class="scr" src="img/app-before.jpg" alt="Service form: before photo of an algae-green pool, technician notes 'Pool has heavy algae, shock treatment done', chemical amounts entered" loading="lazy">
+          <img class="scr" src="img/app-after.jpg" alt="Service form continued: after photo of the same pool, now clean and blue, ready to submit" loading="lazy">
+        </div>
+        <figcaption>1 · Technician fills one form poolside — before/after photos, notes, chemicals — and hits Submit. (Real service: heavy algae to clean in one visit.)</figcaption>
+      </figure>
+      <div class="pipe-arrow" aria-hidden="true">&darr;</div>
+      <div class="pipe-outputs">
+        <figure class="pipe-step">
+          <img class="scr scr-phone" src="img/customer-email.jpg" alt="Automatic customer email: service timestamp, technician notes, itemized chemicals used, before and after photos attached" loading="lazy">
+          <figcaption>The customer instantly gets a service report — notes, itemized chemicals, both photos attached. Same submission, same timestamp.</figcaption>
+        </figure>
+        <figure class="pipe-step">
+          <img class="scr" src="img/stripe-invoice.png" alt="Stripe upcoming invoice: chemicals metered per unit (tablets, gallons, pounds) rolling up onto the monthly bill alongside the base service" loading="lazy">
+          <figcaption>Chemicals are metered per unit through Stripe usage-based billing and roll onto the customer's monthly invoice automatically — a month of visits, aggregated, zero manual entry.</figcaption>
+        </figure>
+        <figure class="pipe-step">
+          <img class="scr" src="img/service-log.png" alt="Google Sheets usage log: 200+ timestamped service rows with chemical amounts and billing status, customer columns redacted; test submission highlighted" loading="lazy">
+          <figcaption>Every visit is logged to a running service history — 200+ rows and counting, each marked when billed. The highlighted row is the submission shown above, logged seconds after Submit. (Customer details redacted.)</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site" id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <ul class="contact">
+      <li><span>Email</span><a href="mailto:sean@seanosullivan.dev">sean@seanosullivan.dev</a></li>
+      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/sean-o-sullivan-bb2076176/">linkedin.com/in/sean-o-sullivan-bb2076176</a></li>
+      <li><span>GitHub</span><a href="https://github.com/seanosullivan-dev">github.com/seanosullivan-dev</a></li>
+      <li><span>Location</span><span style="min-width:0;color:var(--ink)">Las Vegas, NV — open to relocation</span></li>
+    </ul>
+    <p class="foot-note">B.S. Software Engineering, Western Governors University (2026), now pursuing an M.S. with an AI focus. Engineering at CallAura and Splash Bros. Looking for a full-time software or AI engineering role.</p>
+  </div>
+</footer>
+
+</body>
+</html>
